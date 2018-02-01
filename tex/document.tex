@@ -1,0 +1,65 @@
+\documentclass[
+ngerman,
+toc=listof,
+toc=bibliography,
+footnotes=multiple,
+parskip=half,
+numbers=noendperiod
+]{scrartcl}
+\pdfminorversion=5
+\usepackage[utf8]{inputenc}
+
+\input{meta}
+\input{packages}
+\input{style}
+\input{commands}
+
+\begin{document}
+	
+	\phantomsection
+	\thispagestyle{plain}
+	\pdfbookmark[1]{Deckblatt}{deckblatt}
+	\input{titlepage}
+	\cleardoublepage
+	
+	\phantomsection
+	\pagenumbering{Roman}
+	\pdfbookmark[1]{Inhaltsverzeichnis}{inhalt}
+	\tableofcontents
+	\cleardoublepage
+	
+	\phantomsection
+	\listoffigures
+	\cleardoublepage
+	
+	\phantomsection
+	\listoftables
+	\cleardoublepage
+	
+	\phantomsection
+	\lstlistoflistings
+	\cleardoublepage
+	
+	\newcommand{\abkvz}{Abkürzungsverzeichnis}
+	\renewcommand{\nomname}{\abkvz}
+	\section*{\abkvz}
+	\markboth{\abkvz}{\abkvz}
+	\addcontentsline{toc}{section}{\abkvz}
+	\input{abbreviations}
+	\clearpage
+	
+	\pagenumbering{arabic}
+	\input{content}
+	
+	\clearpage
+	\renewcommand{\refname}{Literaturverzeichnis}
+	\bibliographystyle{plainnat}
+	\bibliography{bibliography}
+	\input{affidavit}
+	
+	\clearpage
+	\appendix
+	\pagenumbering{roman}
+	\input{attachment}
+	
+\end{document}
